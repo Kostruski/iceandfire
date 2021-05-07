@@ -3,18 +3,15 @@ import axios from 'axios';
 import NavBar from './NavBar';
 import Loader from './Loader';
 import Table from './Table';
-import { parseCharaters } from './utils';
+import CheckBox from './CheckBox'
+import { parseData } from './utils';
 import 'materialize-css/dist/css/materialize.min.css'
 import './App.css';
 
 const App = () => {
 	const [url, setUrl] = useState('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10');
-	const [firstPage, setFirstPage] = useState(null);
-	const [nextPage, setNextPage] = useState(null);
-	const [prevPage, setPrevPage] = useState(null);
-	const [name, setName] = useState(null);
-	const [gender, setGender] = useState(null);
-	const [currentPage, setCurrentPage] = useState(null);
+	const [pageButtons, setPageButtons] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
 	const [isBook, setIsBook] = useState(false);
@@ -26,11 +23,20 @@ const App = () => {
 			setIsError(false);
 			setIsLoading(true);
 
+
+			const isBookUrl = !!~url.indexOf('www.anapioficeandfire.com/api/books');
+
 			try {
 				const result = await axios(url);
-				setData(parseCharaters(result.data));
-				console.log(parseCharaters(result.data));
+				setData(parseData(result.data, isBookUrl));
+				setIsBook(isBookUrl);
+				if (!isBook) {
+					const pagination = result.headers.link?.match(/<(.|\n)*?>/gm);
+					setPageButtons(pagination.map(link => link.replace(/<|>/gm, '')));
+					setCurrentPage(url.match(/page=(\d+)/)[1]);
+				}
 			} catch (error) {
+				console.log(error);
 				setIsError(true);
 			}
 			setIsLoading(false);
@@ -41,24 +47,32 @@ const App = () => {
 
 	const getBookDetails = bookUrl => {
 		setChachedUrl(url);
-		setIsBook(true);
 		setUrl(bookUrl);
 	}
 
 	const goBack = () => {
-		setIsBook(false);
 		setUrl(cachedUrl);
 		setChachedUrl(null);
+	}
+
+	const setPage = url => {
+		setUrl(url);
 	}
 
 
 	return (
 		<>
-			<NavBar isBook={isBook} goBack={goBack} />
+			<NavBar isBook={isBook} goBack={goBack} pageButtons={pageButtons} currentPage={currentPage} setPage={setPage} />
 			<div className="container">
 				<div className="row">
 					<div className="col s12">
-						{isLoading ? <Loader /> : <Table data={data} getBookDetails={getBookDetails} isBook={isBook} />
+						{!isBook && <CheckBox url={url} setUrl={url}/>}
+					</div>
+				</div>
+				<div className="row">
+					<div className="col s12">
+						{isLoading ? <Loader /> :
+							<Table data={data} getBookDetails={getBookDetails} isBook={isBook} />
 						}
 					</div>
 				</div>

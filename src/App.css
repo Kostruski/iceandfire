@@ -1,6 +1,7 @@
 .col {
 	display: flex;
 	justify-content: center;
+	flex-direction: row;
 }
 
 .preloader-wrapper {
@@ -9,4 +10,9 @@
 
 .book-btn {
 	margin: 0.5rem;
+}
+
+nav {
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
