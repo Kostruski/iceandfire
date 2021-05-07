@@ -1,0 +1,12 @@
+.col {
+	display: flex;
+	justify-content: center;
+}
+
+.preloader-wrapper {
+	margin: 50px;
+}
+
+.book-btn {
+	margin: 0.5rem;
+}
