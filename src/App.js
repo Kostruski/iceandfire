@@ -66,7 +66,7 @@ const App = () => {
 			<div className="container">
 				<div className="row">
 					<div className="col s12">
-						{!isBook && <CheckBox url={url} setUrl={url}/>}
+						{!isBook && <CheckBox url={url} setPage={setPage} isLoading={isLoading}/>}
 					</div>
 				</div>
 				<div className="row">
