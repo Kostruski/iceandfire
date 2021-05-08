@@ -24,7 +24,7 @@ const Table = ({ data, getBookDetails, isBook }) => {
 								<td>{char.name}</td>
 								<td>{char.gender}</td>
 								<td>{char.culture}</td>
-								<td>{char.books.map(book => <a className="waves-effect waves-light btn book-btn" onClick={() => getBookDetails(book.link)}>{book.id}</a>)}</td>
+								<td>{char.books.map((book, i) => <a className="waves-effect waves-light btn book-btn" onClick={() => getBookDetails(book.link)} key={book+i}>{book.id}</a>)}</td>
 								<td>{char.seasons}</td>
 							</tr>
 						)

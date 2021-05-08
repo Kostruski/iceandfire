@@ -16,3 +16,7 @@ nav {
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
+
+.pagination .btn {
+	margin-right: 0.5rem;
+}
