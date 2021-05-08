@@ -27,7 +27,7 @@ const CheckBox = ({ url, setPage, isLoading }) => {
 	}, [genderFilter])
 
 	return (
-		<div>
+		<div className="col s3 valign-wrapper">
 			<p>
 				<label>
 					<input type="checkbox" value='male' disabled={isLoading} onChange={e => handleGenderFilter(e.target)} />

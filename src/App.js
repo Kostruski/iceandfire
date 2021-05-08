@@ -4,9 +4,10 @@ import NavBar from './NavBar';
 import Loader from './Loader';
 import Input from './Input';
 import Table from './Table';
-import CheckBox from './CheckBox'
+import DropDown from './DropDown';
+import CheckBox from './CheckBox';
 import { parseData } from './utils';
-import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
 const App = () => {
@@ -62,14 +63,16 @@ const App = () => {
 	return (
 		<>
 			<NavBar isBook={isBook} goBack={goBack} lastPage={lastPage} setPage={setPage} url={url} />
-			<div className="container">
+			<div className="container-fixed">
 				<div className="row">
-					<div className="col s12">
+					<div className="col s12 inputs-group">
 						{!isBook &&
-							<div className="inputs-group">
+							<>
 								<CheckBox url={url} setPage={setPage} isLoading={isLoading} />
-								<Input url={url} setPage={setPage} isLoading={isLoading} />
-							</div>}
+								<Input url={url} setPage={setPage} />
+								<DropDown url={url} setPage={setPage} isLoading={isLoading} />
+							</>
+						}
 					</div>
 				</div>
 				<div className="row">

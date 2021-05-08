@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavBar = ({ isBook, goBack, lastPage, setPage, url }) => {
 	let newUrl = url;
-	const currP = parseInt(url.match(/page=(\d+)/)[1]);
+	const currP = parseInt(url.match(/page=(\d+)/)?.[1]);
 
 	const handlePageChange = page => {
 		newUrl = newUrl.replace(/(page=)(\d+)/, `$1${page}`);

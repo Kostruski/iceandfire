@@ -20,3 +20,20 @@ nav {
 .pagination .btn {
 	margin-right: 0.5rem;
 }
+
+.container-fixed {
+	width: 95%;
+	margin: auto;
+}
+
+.inputs-group {
+	margin-top: 2rem;
+}
+
+.input-field.inline input {
+	margin: 0 1rem;
+}
+
+.inputs-group p {
+	margin-right: 1rem;
+}
