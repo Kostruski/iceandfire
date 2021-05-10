@@ -1,0 +1,56 @@
+.col {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.preloader-wrapper {
+	margin: 50px;
+}
+
+.book-btn {
+	margin: 0.5rem;
+}
+
+nav {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.pagination .btn {
+	margin-right: 0.5rem;
+}
+
+.container-fixed {
+	width: 95%;
+	margin: auto;
+}
+
+.inputs-group {
+	margin-top: 2rem;
+	flex-wrap: wrap;
+}
+
+.input-field.inline {
+	margin: 0 1rem;
+}
+
+.input-field.inline input {
+	margin-bottom: 0;
+}
+
+.inputs-group p {
+	margin-right: 1rem;
+}
+
+.inputs-group .input-field {
+	margin-top: 0;
+}
+
+.inputs-group .s6 {
+	min-width: 400px;
+}
+
+.inputs-group .s3 {
+	min-width: 200px;
+}
