@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Table = ({ data, getBookDetails, isBook }) => {
-	const headers = isBook ? ['name', 'ISBN', 'number of pages', 'release date'] : ['names and aliases', 'gender', 'culture', 'books', 'seasons'];
+	const headers = isBook ? ['name', 'ISBN', 'number of pages', 'release date'] : ['names and aliases', 'gender', 'culture', 'books', 'seasons count'];
 	return (
 		<table className="responsive-table">
 			<thead>
