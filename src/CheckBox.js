@@ -11,6 +11,7 @@ const CheckBox = ({ url, setPage, isLoading }) => {
 
 	const handleGenderFilter = target => {
 		let arr = [...genderFilter];
+
 		if (target.checked) {
 			arr.push(target.value);
 		} else {

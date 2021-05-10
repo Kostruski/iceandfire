@@ -6,7 +6,7 @@ const Table = ({ data, getBookDetails, isBook }) => {
 		<table className="responsive-table">
 			<thead>
 				<tr>
-					{headers.map((text, i) => <td key={text = i}><b>{text}</b></td>)}
+					{headers.map((text, i) => <td key={text + i}><b>{text}</b></td>)}
 				</tr>
 			</thead>
 

@@ -71,15 +71,13 @@ const App = () => {
 			<NavBar isBook={isBook} goBack={goBack} lastPage={lastPage} setPage={setPage} url={url} is={isLoading} />
 			<div className="container-fixed">
 				<div className="row">
-					<div className="col s12 inputs-group">
-						{!isBook &&
-							<>
-								<CheckBox url={url} setPage={setPage} isLoading={isLoading} />
-								<Input url={url} setPage={setPage} />
-								<DropDown url={url} setPage={setPage} isLoading={isLoading} lastPage={lastPage} />
-							</>
-						}
-					</div>
+					{!isBook &&
+						<div className="col s12 inputs-group">
+							<CheckBox url={url} setPage={setPage} isLoading={isLoading} />
+							<Input url={url} setPage={setPage} />
+							<DropDown url={url} setPage={setPage} isLoading={isLoading} lastPage={lastPage} />
+						</div>
+					}
 				</div>
 				<div className="row">
 					<div className="col s12">
