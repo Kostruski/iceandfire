@@ -44,6 +44,14 @@ const App = () => {
 		fetchData();
 	}, [url]);
 
+	useEffect(() => {
+		let newUrl = url;
+		const currP = url.match(/page=(\d+)/)?.[1];
+		if (parseInt(currP) > parseInt(lastPage)) newUrl = newUrl.replace(/(page=)(\d+)/, `$1${lastPage}`);
+
+		setUrl(newUrl);
+	}, [lastPage])
+
 	const getBookDetails = bookUrl => {
 		setChachedUrl(url);
 		setUrl(bookUrl);
@@ -60,7 +68,7 @@ const App = () => {
 
 	return (
 		<>
-			<NavBar isBook={isBook} goBack={goBack} lastPage={lastPage} setPage={setPage} url={url} />
+			<NavBar isBook={isBook} goBack={goBack} lastPage={lastPage} setPage={setPage} url={url} is={isLoading} />
 			<div className="container-fixed">
 				<div className="row">
 					<div className="col s12 inputs-group">
@@ -68,7 +76,7 @@ const App = () => {
 							<>
 								<CheckBox url={url} setPage={setPage} isLoading={isLoading} />
 								<Input url={url} setPage={setPage} />
-								<DropDown url={url} setPage={setPage} isLoading={isLoading} />
+								<DropDown url={url} setPage={setPage} isLoading={isLoading} lastPage={lastPage} />
 							</>
 						}
 					</div>

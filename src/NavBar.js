@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavBar = ({ isBook, goBack, lastPage, setPage, url }) => {
+const NavBar = ({ isBook, goBack, lastPage, setPage, url, }) => {
 	let newUrl = url;
 	const currP = parseInt(url.match(/page=(\d+)/)?.[1]);
 

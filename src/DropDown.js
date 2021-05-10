@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import M from 'materialize-css';
 
-const DropDown = ({ url, setPage, isLoading }) => {
+const DropDown = ({ url, setPage, isLoading, lastPage }) => {
 	let newUrl = url;
 
 	useEffect(() => {
