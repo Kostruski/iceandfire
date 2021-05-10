@@ -3,10 +3,10 @@ import React from 'react';
 const Table = ({ data, getBookDetails, isBook }) => {
 	const headers = isBook ? ['name', 'ISBN', 'number of pages', 'release date'] : ['name', 'gender', 'culture', 'books', 'seasons'];
 	return (
-		<table>
+		<table className="responsive-table">
 			<thead>
 				<tr>
-					{headers.map((text, i) => <td key={text=i}><b>{text}</b></td>)}
+					{headers.map((text, i) => <td key={text = i}><b>{text}</b></td>)}
 				</tr>
 			</thead>
 
@@ -24,7 +24,7 @@ const Table = ({ data, getBookDetails, isBook }) => {
 								<td>{char.name}</td>
 								<td>{char.gender}</td>
 								<td>{char.culture}</td>
-								<td>{char.books.map((book, i) => <a className="waves-effect waves-light btn book-btn" onClick={() => getBookDetails(book.link)} key={book+i}>{book.id}</a>)}</td>
+								<td>{char.books.map((book, i) => <a className="waves-effect waves-light btn book-btn" onClick={() => getBookDetails(book.link)} key={book + i}>{book.id}</a>)}</td>
 								<td>{char.seasons}</td>
 							</tr>
 						)

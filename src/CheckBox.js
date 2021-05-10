@@ -21,6 +21,7 @@ const CheckBox = ({ url, setPage, isLoading }) => {
 
 	useEffect(() => {
 		newUrl = newUrl.replace(/(page=)(\d+)/, `$11`);
+
 		if (genderFilter.length === 1) setPage(newUrl + `&gender=${genderFilter[0]}`);
 		if (genderFilter.length !== 1) setPage(newUrl);
 

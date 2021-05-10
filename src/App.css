@@ -28,12 +28,29 @@ nav {
 
 .inputs-group {
 	margin-top: 2rem;
+	flex-wrap: wrap;
+}
+
+.input-field.inline {
+	margin: 0 1rem;
 }
 
 .input-field.inline input {
-	margin: 0 1rem;
+	margin-bottom: 0;
 }
 
 .inputs-group p {
 	margin-right: 1rem;
+}
+
+.inputs-group .input-field {
+	margin-top: 0;
+}
+
+.inputs-group .s6 {
+	min-width: 400px;
+}
+
+.inputs-group .s3 {
+	min-width: 200px;
 }

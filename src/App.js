@@ -14,14 +14,12 @@ const App = () => {
 	const [url, setUrl] = useState('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10');
 	const [lastPage, setLastPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(true);
-	const [isError, setIsError] = useState(false);
 	const [isBook, setIsBook] = useState(false);
 	const [data, setData] = useState([]);
 	const [cachedUrl, setChachedUrl] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsError(false);
 			setIsLoading(true);
 
 			const isBookUrl = !!~url.indexOf('www.anapioficeandfire.com/api/books');
@@ -37,8 +35,9 @@ const App = () => {
 					setLastPage(lastPage);
 				}
 			} catch (error) {
-				setIsError(true);
+				alert('Something went wrong, try again or contact your administrator \n' + error);
 			}
+
 			setIsLoading(false);
 		};
 
@@ -58,7 +57,6 @@ const App = () => {
 	const setPage = url => {
 		setUrl(url);
 	}
-
 
 	return (
 		<>
