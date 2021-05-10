@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/iceandfire/static/css/main.db42709a.chunk.css",
+    "main.js": "/iceandfire/static/js/main.55172e43.chunk.js",
+    "main.js.map": "/iceandfire/static/js/main.55172e43.chunk.js.map",
+    "runtime-main.js": "/iceandfire/static/js/runtime-main.7118b2fe.js",
+    "runtime-main.js.map": "/iceandfire/static/js/runtime-main.7118b2fe.js.map",
+    "static/css/2.95ff951f.chunk.css": "/iceandfire/static/css/2.95ff951f.chunk.css",
+    "static/js/2.6b9ad56e.chunk.js": "/iceandfire/static/js/2.6b9ad56e.chunk.js",
+    "static/js/2.6b9ad56e.chunk.js.map": "/iceandfire/static/js/2.6b9ad56e.chunk.js.map",
+    "static/js/3.f7699838.chunk.js": "/iceandfire/static/js/3.f7699838.chunk.js",
+    "static/js/3.f7699838.chunk.js.map": "/iceandfire/static/js/3.f7699838.chunk.js.map",
+    "index.html": "/iceandfire/index.html",
+    "static/css/2.95ff951f.chunk.css.map": "/iceandfire/static/css/2.95ff951f.chunk.css.map",
+    "static/css/main.db42709a.chunk.css.map": "/iceandfire/static/css/main.db42709a.chunk.css.map",
+    "static/js/2.6b9ad56e.chunk.js.LICENSE.txt": "/iceandfire/static/js/2.6b9ad56e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7118b2fe.js",
+    "static/css/2.95ff951f.chunk.css",
+    "static/js/2.6b9ad56e.chunk.js",
+    "static/css/main.db42709a.chunk.css",
+    "static/js/main.55172e43.chunk.js"
+  ]
+}
