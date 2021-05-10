@@ -5,7 +5,7 @@ const Input = ({ setPage, url }) => {
 	let newUrl = url;
 	const [text, setText] = useState('');
 	const [label, setLabel] = useState('Character name');
-	const filter = url.match(/&name=([a-z0-9+]+)/);
+	const filter = url.match(/&name=([a-zA-Z0-9+]+)/);
 
 	useEffect(() => {
 		M.updateTextFields();
