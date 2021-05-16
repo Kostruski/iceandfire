@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar';
 import Loader from './Loader';
@@ -7,38 +7,37 @@ import Table from './Table';
 import DropDown from './DropDown';
 import CheckBox from './CheckBox';
 import { parseData } from './utils';
+import { initialState, reducer } from './reducer';
+import Context from './context';
 import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
 const App = () => {
-	const [url, setUrl] = useState('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10');
-	const [lastPage, setLastPage] = useState(1);
-	const [isLoading, setIsLoading] = useState(true);
-	const [isBook, setIsBook] = useState(false);
-	const [data, setData] = useState([]);
-	const [cachedUrl, setChachedUrl] = useState(null);
+	const [state, dispatch] = useReducer(reducer, initialState);
+	const { url, lastPage, isLoading, isBook, data, cachedUrl } = state;
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsLoading(true);
+			dispatch({ type: 'setIsLoading', payload: true });
 
 			const isBookUrl = !!~url.indexOf('www.anapioficeandfire.com/api/books');
 
 			try {
 				const result = await axios(url);
-				setData(parseData(result.data, isBookUrl));
-				setIsBook(isBookUrl);
+				const newData = parseData(result.data, isBookUrl);
+				dispatch({ type: 'setData', payload: newData });
+				dispatch({ type: 'setIsBook', payload: isBookUrl })
 
 				if (!isBookUrl) {
 					const pagination = result.headers.link?.match(/<(.|\n)*?>/gm);
 					const lastPage = pagination[pagination.length - 1].match(/page=(\d+)/)[1];
-					setLastPage(lastPage);
+					dispatch({ type: 'setLastPage', payload: lastPage });
 				}
 			} catch (error) {
 				alert('Something went wrong, try again or contact your administrator \n' + error);
 			}
 
-			setIsLoading(false);
+			dispatch({ type: 'setIsLoading', payload: false });
 		};
 
 		fetchData();
@@ -49,26 +48,21 @@ const App = () => {
 		const currP = url.match(/page=(\d+)/)?.[1];
 		if (parseInt(currP) > parseInt(lastPage)) newUrl = newUrl.replace(/(page=)(\d+)/, `$1${lastPage}`);
 
-		setUrl(newUrl);
+		dispatch({ type: 'setUrl', payload: newUrl });
 	}, [lastPage])
 
 	const getBookDetails = bookUrl => {
-		setChachedUrl(url);
-		setUrl(bookUrl);
-	}
-
-	const goBack = () => {
-		setUrl(cachedUrl);
-		setChachedUrl(null);
+		dispatch({ type: 'setCachedUrl', payload: url });
+		dispatch({ type: 'setUrl', payload: bookUrl });
 	}
 
 	const setPage = url => {
-		setUrl(url);
+		dispatch({ type: 'setUrl', payload: url });
 	}
 
 	return (
-		<>
-			<NavBar isBook={isBook} goBack={goBack} lastPage={lastPage} setPage={setPage} url={url} is={isLoading} />
+		<Context.Provider value={{ state, dispatch }}>
+			<NavBar />
 			<div className="container-fixed">
 				<div className="row">
 					{!isBook &&
@@ -87,7 +81,7 @@ const App = () => {
 					</div>
 				</div>
 			</div>
-		</>
+		</Context.Provider>
 	)
 }
 

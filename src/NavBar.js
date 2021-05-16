@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from './context'
 
-const NavBar = ({ isBook, goBack, lastPage, setPage, url, }) => {
+const NavBar = () => {
+	const { state, dispatch} = useContext(Context);
+	const { isBook, lastPage, url, cachedUrl } = state;
+
 	let newUrl = url;
 	const currP = parseInt(url.match(/page=(\d+)/)?.[1]);
 
 	const handlePageChange = page => {
 		newUrl = newUrl.replace(/(page=)(\d+)/, `$1${page}`);
-		setPage(newUrl);
+		dispatch({ type: 'setUrl', payload: newUrl });
+	}
+
+	const goBack = () => {
+		dispatch({ type: 'setUrl', payload: cachedUrl });
+		dispatch({ type: 'setCachedUrl', payload: null });
 	}
 
 	return (
